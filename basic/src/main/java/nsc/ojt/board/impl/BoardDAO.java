@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import nsc.ojt.common.ui.AbstractDAO;
+import nsc.ojt.common.repository.mybatis.impl.AbstractDAO;
 
 @Repository
 public class BoardDAO extends AbstractDAO{

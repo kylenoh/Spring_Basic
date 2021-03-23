@@ -1,4 +1,4 @@
-package nsc.ojt.common.ui;
+package nsc.ojt.common.repository.mybatis.impl;
 
 import java.util.List;
 

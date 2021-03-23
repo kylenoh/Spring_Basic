@@ -9,19 +9,23 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<beans:bean class="nsc.ojt.common.CustomMapArgumentResolver"/>
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**/" />
-			<beans:bean id="InjectDefaultLogger"
-				class="nsc.ojt.common.InjectDefaultLogger" />
+			<beans:bean id="InjectDefaultVariablesInterceptor"
+				class="nsc.ojt.common.ui.InjectDefaultVariablesInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<beans:bean	class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+	
 	<beans:bean	class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
 
 
@@ -34,7 +38,7 @@
 		in the /WEB-INF/views directory -->
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="prefix" value="/WEB-INF/jsp/" />
 		<beans:property name="suffix" value=".jsp" />
 		<beans:property name="order" value="1" />
 	</beans:bean>

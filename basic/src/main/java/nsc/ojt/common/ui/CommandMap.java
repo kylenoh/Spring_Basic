@@ -1,4 +1,4 @@
-package nsc.ojt.common;
+package nsc.ojt.common.ui;
 
 import java.util.HashMap;
 import java.util.Map;

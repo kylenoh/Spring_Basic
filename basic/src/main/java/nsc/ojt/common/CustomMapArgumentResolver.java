@@ -10,6 +10,8 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+import nsc.ojt.common.ui.CommandMap;
+
 public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver {
 
 	@Override
