@@ -7,7 +7,7 @@
 					P_NUM, 
 					IP_ADDRESS, 
 					TITLE, 
-					CONTETNS, 
+					CONTENTS, 
 					PASSWD, 
 					CNT, 
 					INPUTDATE 
@@ -16,5 +16,64 @@
 		]]>
 	</select>
 
+	<insert id="boardRegist" parameterType="hashmap">
+		<![CDATA[ 
+			INSERT INTO ZZT_BOARD ( 
+					B_NUM,
+					P_NUM,
+					IP_ADDRESS,
+					TITLE,
+					CONTENTS,
+					PASSWD,
+					CNT,
+					INPUTDATE
+			) VALUES 
+			(
+					SEQ_ZZT_BOARD_IDX.NEXTVAL,
+					2,
+					'127.0.0.1',
+					#{TITLE},
+					#{CONTENTS},
+					'0',
+					0,
+					SYSDATE 
+			) 
+		]]>
+	</insert>
+	<update id="updateCnt" parameterType="hashmap">
+		<![CDATA[ 
+			UPDATE	ZZT_BOARD 
+			   SET 	CNT = NVL(CNT, 0) + 1 
+			 WHERE	B_NUM = #{B_NUM} 
+		]]>
+	</update>
+	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[ 
+			SELECT 	B_NUM, 
+					P_NUM, 
+					IP_ADDRESS, 
+					TITLE, 
+					CONTENTS, 
+					PASSWD, 
+					CNT, 
+					INPUTDATE 
+			FROM 	ZZT_BOARD
+			WHERE	B_NUM = #{B_NUM} 
+		]]>
+	</select>
+	<update id="updateBoard" parameterType="hashmap">
+		<![CDATA[ 
+			 UPDATE	ZZT_BOARD 
+				SET TITLE = #{TITLE}, 
+					CONTENTS = #{CONTENTS} 
+			  WHERE B_NUM = #{B_NUM} 
+		]]> 
+	</update>
+	<delete id="deleteBoard" parameterType="hashmap">
+		<![CDATA[ 
+			 DELETE	FROM ZZT_BOARD 
+			  WHERE B_NUM = #{B_NUM} 
+		]]> 
+	</delete>
 </mapper>
 

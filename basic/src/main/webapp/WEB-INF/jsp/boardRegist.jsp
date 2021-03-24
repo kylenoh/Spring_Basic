@@ -8,11 +8,11 @@
 <title>boardRegist</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<link rel="stylesheet" type="text/css" href="/css/common.css" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/common.css'/>" />
 <!-- jQuery -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="/js/common.js" type="text/javascript"></script>
+<script src="<c:url value='/resources/js/common.js'/>" type="text/javascript"></script>
 </head>
 <body>
 	<form id="frm">
@@ -47,7 +47,7 @@
 			});
 			$("#write").on("click", function(e) {
 				e.preventDefault();
-				fn_insertBoard();
+				fn_boardRegist();
 			});
 		});
 		function fn_openBoardList() {
@@ -55,9 +55,9 @@
 			comSubmit.setUrl("<c:url value='/boardList' />");
 			comSubmit.submit();
 		}
-		function fn_insertBoard() {
+		function fn_boardRegist() {
 			var comSubmit = new ComSubmit("frm");
-			comSubmit.setUrl("<c:url value='/Regist' />");
+			comSubmit.setUrl("<c:url value='/boardRegist' />");
 			comSubmit.submit();
 		}
 	</script>

@@ -26,6 +26,7 @@ public class BoardController {
 	@Inject
 	private BoardService boardService;
 
+	/* 쿼리가 포함된 Controller */
 	@RequestMapping(value = "/boardList")
 	public ModelAndView BoardList(Map<String, Object> commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/boardList");
@@ -35,16 +36,55 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/boardRegist")
-	public ModelAndView BoardRegist(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/boardRegist");
-
+	public ModelAndView boardRegist(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/boardList");
+		boardService.boardRegist(commandMap.getMap());
 		return mv;
 	}
-	
-	@RequestMapping(value = "/Regist")
-	public ModelAndView openBoardWrite(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/boardList");
 
+	@RequestMapping(value = "/boardDetail")
+	public ModelAndView boardDetail(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/boardDetail");
+		Map<String, Object> map = boardService.selectBoardDetail(commandMap.getMap());
+		mv.addObject("map", map);
+		return mv;
+	}
+
+	@RequestMapping(value = "/boardUpdate")
+	public ModelAndView boardUpdate(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/boardUpdate");
+		Map<String, Object> map = boardService.selectBoardDetail(commandMap.getMap());
+		mv.addObject("map", map);
+		return mv;
+	}
+
+	@RequestMapping(value = "/updateBoard")
+	public ModelAndView updateBoard(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/boardDetail");
+		boardService.updateBoard(commandMap.getMap());
+		mv.addObject("B_NUM", commandMap.get("B_NUM"));
+		if (commandMap.isEmpty() == false) {
+			Iterator<Entry<String, Object>> iterator = commandMap.getMap().entrySet().iterator();
+			Entry<String, Object> entry = null;
+			while (iterator.hasNext()) {
+				entry = iterator.next();
+				logger.debug("key : " + entry.getKey() + ", value : " + entry.getValue());
+			}
+		}
+		return mv;
+	}
+
+	@RequestMapping(value = "/deleteBoard")
+	public ModelAndView deleteBoard(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/boardList");
+		boardService.deleteBoard(commandMap.getMap());
+		return mv;
+	}
+
+	/* 화면전환을 위한 Controller */
+	@RequestMapping(value = "/boardWrite")
+	public ModelAndView boardWrite(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/boardRegist");
 		return mv;
 	}
 
