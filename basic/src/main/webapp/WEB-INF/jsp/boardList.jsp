@@ -15,54 +15,84 @@
 <script src="<c:url value='/resources/js/common.js'/>" type="text/javascript"></script>
 </head>
 <body>
-	<h2>게시판 목록</h2>
-	<table class="board_list">
-		<colgroup>
-			<col width="5%" />
-			<col width="5%" />
-			<col width="10%" />
-			<col width="*" />
-			<col width="5%" />
-			<col width="5%" />
-		</colgroup>
-		<thead>
-			<tr>
-				<th scope="col">게시판번호</th>
-				<th scope="col">사용자IP</th>
-				<th scope="col">제목</th>
-				<th scope="col">내용</th>
-				<th scope="col">조회수</th>
-				<th scope="col">입력일</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:choose>
-				<c:when test="${fn:length(list) > 0}">
-					<c:forEach items="${list }" var="row">
+
+<div class="wrap">
+    <div class="header">
+    	<h1>메인화면 바로가기 만들기</h1>
+    </div>
+    <div class="container">
+      <ul class="menu">
+        <li class="menu_item"><a href="/basic/boardList" class="menu_link">게시판</a></li>
+        <li class="menu_item active"><a href="#" class="menu_link">테스트1</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트2</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트3</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트4</a></li>
+      </ul>
+	</div>
+    <div class="content">
+	    <table class="board_list">
+			<colgroup>
+				<col width="10%" />
+				<col width="*%" />
+				<col width="10" />
+				<col width="20%" />
+				<col width="10%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">게시판번호</th>
+					<th scope="col">제목</th>
+					<th scope="col">사용자IP</th>
+					<th scope="col">입력일</th>
+					<th scope="col">조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:choose>
+					<c:when test="${fn:length(list) > 0}">
+						<c:forEach items="${list }" var="row">
+							<tr>
+								<td>${row.B_NUM }</td>
+
+								<td class="title">
+									<a href="#this" name="title">${row.TITLE }</a>
+									<input type="hidden" id="IDX" value="${row.B_NUM }">
+								</td>
+								<td>${row.IP_ADDRESS }</td>
+								<td>${row.INPUTDATE }</td>
+								<td>${row.CNT }</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
 						<tr>
-							<td>${row.B_NUM }</td>
-							<td>${row.IP_ADDRESS }</td>
-							<td class="title">
-								<a href="#this" name="title">${row.TITLE }</a>
-								<input type="hidden" id="IDX" value="${row.B_NUM }">
-							</td>
-							<td>${row.CONTENTS }</td>
-							<td>${row.CNT }</td>
-							<td>${row.INPUTDATE }</td>
+							<td colspan="5">조회된 결과가 없습니다.</td>
 						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="8">조회된 결과가 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		</tbody>
-	</table>
-	<br/>
-	<a href="#this" class="btn" id="write">글쓰기</a>
-	<form id="commonForm" name="commonForm"></form>
+					</c:otherwise>
+				</c:choose>
+			</tbody>
+		</table>
+		<br/>
+		<div class="pagination">
+		  <a href="#">&laquo;</a>
+		  <a href="#">1</a>
+		  <a href="#">2</a>
+		  <a href="#">3</a>
+		  <a href="#">4</a>
+		  <a href="#">5</a>
+		  <a href="#">6</a>
+		  <a href="#">&raquo;</a>
+		</div>
+		<a href="#this" class="button" id="write">글쓰기</a>
+		<form id="commonForm" name="commonForm"></form>
+		
+    
+    </div>
+    <div class="aside">aside</div> <!-- 사이드영역 추가 -->
+    <div class="footer">footer</div>
+</div>
+
+	<h2>게시판 목록</h2>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {

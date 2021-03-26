@@ -15,29 +15,49 @@
 <script src="<c:url value='/resources/js/common.js'/>" type="text/javascript"></script>
 </head>
 <body>
-	<form id="frm">
-		<table class="board_view">
-			<colgroup>
-				<col width="15%">
-				<col width="*" />
-			</colgroup>
-			<caption>게시글 작성</caption>
-			<tbody>
-				<tr>
-					<th scope="row">제목</th>
-					<td><input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="view_text"><textarea rows="20"
-							cols="100" title="내용" id="CONTENTS" name="CONTENTS"></textarea></td>
-				</tr>
-			</tbody>
-		</table>
-		<a href="#this" class="btn" id="write">작성하기</a> <a href="#this"
-			class="btn" id="list">목록으로</a>
-	</form>
-	
-	<form id="commonForm" name="commonForm"></form>
+<div class="wrap">
+    <div class="header">
+    	<h1>메인화면 바로가기 만들기</h1>
+    </div>
+    <div class="container">
+      <ul class="menu">
+        <li class="menu_item"><a href="/basic/boardList" class="menu_link">게시판</a></li>
+        <li class="menu_item active"><a href="#" class="menu_link">테스트1</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트2</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트3</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트4</a></li>
+      </ul>
+	</div>
+    <div class="content">
+	    	<form id="frm">
+			<table class="board_view">
+				<colgroup>
+					<col width="15%">
+					<col width="*" />
+				</colgroup>
+				<caption>게시글 작성</caption>
+				<tbody>
+					<tr>
+						<th scope="row">제목</th>
+						<td><input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="view_text"><textarea rows="20"
+								cols="100" title="내용" id="CONTENTS" name="CONTENTS"></textarea></td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="#this" class="button" id="write">작성하기</a> 
+			<a href="#this"	class="button" id="list">목록으로</a>
+		</form>
+		
+		<form id="commonForm" name="commonForm"></form>
+    </div>
+    <div class="aside">aside</div> <!-- 사이드영역 추가 -->
+    <div class="footer">footer</div>
+</div>
+
+
 	
 	<script type="text/javascript">
 		$(document).ready(function() {

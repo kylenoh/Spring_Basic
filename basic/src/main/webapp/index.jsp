@@ -15,11 +15,27 @@
 <script src="<c:url value='/resources/js/common.js'/>" type="text/javascript"></script>
 </head>
 <body>
-<body> <h1>Controller를 거치지 않고 web.xml WelcomePage적용받습니다.</h1> </body>
-	<ul>
-		<li><a href="/basic/boardList">게시판</a></li>
-		<li>테스트 1</li>
-		<li>테스트 2</li>
-	</ul>
+
+
+<div class="wrap">
+    <div class="header">header
+    	<h1>Controller를 거치지 않고 web.xml WelcomePage적용받습니다.</h1>
+    </div>
+    <div class="container">
+      <ul class="menu">
+        <li class="menu_item"><a href="/basic/boardList" class="menu_link">게시판</a></li>
+        <li class="menu_item active"><a href="#" class="menu_link">테스트1</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트2</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트3</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트4</a></li>
+      </ul>
+	</div>
+    <div class="content">content</div>
+    <div class="aside">aside</div> <!-- 사이드영역 추가 -->
+    <div class="footer">footer</div>
+</div>
+
+
+	
 </body>
 </html>

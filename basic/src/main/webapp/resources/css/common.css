@@ -1,10 +1,8 @@
 @charset "UTF-8";
-
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -25,6 +23,15 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+body {
+    font-family: '나눔고딕', NanumGothic, Dotum, '돋움', sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -33,6 +40,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
@@ -53,93 +61,144 @@ a:link, a:visited {
 	text-decoration: none;
 	color: #656565;
 }
+/*Reset CSS 종료*/
 
-.board_list {
-	width: 100%;
-	border-top: 2px solid #252525;
-	border-bottom: 1px solid #ccc
+/*Layout*/
+.wrap {
+    max-width: 1200px;
+    min-width: 500px;
+    margin: 0 auto;
 }
 
-.board_list thead th:first-child {
-	background-image: none
+.header {
+    height:100px;
+    background-color: lightgreen;
+}
+.container {
+    display: table; /* 부모 요소에 display: table 추가 */
+    width: 1200px;
+    margin: 0 auto;
+}
+.content {
+    display: table-cell; 
+    width: 1200px; /* -5px 하여 추가된 구분선 만큼 빼기 */ 
+    height: 900px;
+    border-right: 5px solid #000; /* border를 이용해 구분선 추가 */
+}
+.aside {
+    display: table-cell;/* 자식 요소에 display: table-cell 추가 */
+    height: 900px;
+    background-color: lightseagreen;
+}
+.footer {
+    height:100px;
+    background-color: cornflowerblue;
+}
+/* 1단 메뉴 */
+.menu {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.menu_item {
+    display: table-cell;
+}
+.menu_link {
+    display: block;
+    height: 36px;    
+    border: 1px solid #ddd;
+    font-size: 12px;
+    line-height: 36px;
+    color: #333;
+    text-align: center;
+}
+.menu_item + .menu_item .menu_link {
+    margin-left: -1px;
+}
+.menu_item:hover .menu_link {
+    color: green;
+    font-weight: bold;
+}
+.menu_item.active .menu_link {
+    position: relative;
+    border-color: #555;
+    font-weight: bold;
+    color: #fff;
+    background: gray; 
+}
+/* table */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
 }
 
-.board_list thead th {
-	border-bottom: 1px solid #ccc;
-	padding: 12px 0 13px 0;
-	color: #3b3a3a;
-	vertical-align: middle
+/* Style table headers and table data */
+th, td {
+  text-align: center;
+  padding: 16px;
 }
 
-.board_list tbody td {
-	border-top: 1px solid #ccc;
-	padding: 10px 0;
-	text-align: center;
-	vertical-align: middle
+th:first-child, td:first-child {
+  text-align: left;
 }
 
-.board_list tbody tr:first-child td {
-	border: none
+/* Zebra-striped table rows */
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+/* Button */
+.button {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
 }
 
-.board_list tbody td.title {
-	text-align: left;
-	padding-left: 20px
+/* Form */
+input[type=text] {
+  border: 2px solid red;
+  border-radius: 4px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
 
-.board_list tbody td a {
-	display: inline-block
+input[type="password"] {
+    width: 198px;
+    height: 38px;
+    line-height: 38px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    text-indent: 10px;
+    color: #000;
 }
 
-.board_view {
-	width: 50%;
-	border-top: 2px solid #252525;
-	border-bottom: 1px solid #ccc
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
 }
 
-.board_view tbody th {
-	text-align: left;
-	background: #f7f7f7;
-	color: #3b3a3a
+/* Pagenation */
+.pagination {
+  display: inline-block;
 }
 
-.board_view tbody th.list_tit {
-	font-size: 13px;
-	color: #000;
-	letter-spacing: 0.1px
-}
-
-.board_view tbody .no_line_b th, .board_view tbody .no_line_b td {
-	border-bottom: none
-}
-
-.board_view tbody th, .board_view tbody td {
-	padding: 15px 0 16px 16px;
-	border-bottom: 1px solid #ccc
-}
-
-.board_view tbody td.view_text {
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	padding: 45px 18px 45px 18px
-}
-
-.board_view tbody th.th_file {
-	padding: 0 0 0 15px;
-	vertical-align: middle
-}
-
-.wdp_90 {
-	width: 90%
-}
-
-.btn {
-	border-radius: 3px;
-	padding: 5px 11px;
-	color: #fff !important;
-	display: inline-block;
-	border: 1px solid #56819d;
-	vertical-align: middle;
-	width: 56px;
-    background-color: #19ce60;
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
 }

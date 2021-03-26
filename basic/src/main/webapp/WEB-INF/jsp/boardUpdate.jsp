@@ -17,57 +17,79 @@
 	type="text/javascript"></script>
 </head>
 <body>
-	<table class="board_view">
-		<colgroup>
-			<col width="5%" />
-			<col width="5%" />
-			<col width="5%" />
-			<col width="10%" />
-			<col width="*" />
-			<col width="5%" />
-			<col width="5%" />
-			<col width="5%" />
-		</colgroup>
-		<caption>게시글 상세</caption>
-		<tbody>
-			<tr>
-				<th scope="row">글 번호</th>
-				<td>${map.B_NUM }<input type="hidden" id="B_NUM" name="B_NUM"
-					value="${map.B_NUM }">
 
-				</td>
-				<th scope="row">조회수</th>
-				<td>${map.CNT }</td>
-			</tr>
-			<tr>
-				<th scope="row">사용자IP</th>
-				<td>${map.IP_ADDRESS }</td>
-				<th scope="row">입력일</th>
-				<td>${map.INPUTDATE }</td>
-			</tr>
-			<tr>
-				<th scope="row">비밀번호</th>
-				<td>${map.PASSWD }</td>
-				<th scope="row">부모게시글번호</th>
-				<td>${map.P_NUM }</td>
-			</tr>
-			<tr>
-				<th scope="row">제목</th>
-				<td colspan="3"><input type="text" id="TITLE" name="TITLE"
-					class="wdp_90" value="${map.TITLE }" /></td>
-			</tr>
-			<tr>
-				<td colspan="4" class="view_text"><textarea rows="20"
-						cols="100" title="내용" id="CONTENTS" name="CONTENTS">${map.CONTENTS }</textarea>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<a href="#this" class="btn" id="list">목록으로</a>
-	<a href="#this" class="btn" id="update">저장하기</a>
-	<a href="#this" class="btn" id="delete">삭제하기</a>
+<div class="wrap">
+    <div class="header">
+    	<h1>메인화면 바로가기 만들기</h1>
+    </div>
+    <div class="container">
+      <ul class="menu">
+        <li class="menu_item"><a href="/basic/boardList" class="menu_link">게시판</a></li>
+        <li class="menu_item active"><a href="#" class="menu_link">테스트1</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트2</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트3</a></li>
+        <li class="menu_item"><a href="#" class="menu_link">테스트4</a></li>
+      </ul>
+	</div>
+    <div class="content">
+	    	<table class="board_view">
+			<colgroup>
+				<col width="5%" />
+				<col width="5%" />
+				<col width="5%" />
+				<col width="10%" />
+				<col width="*" />
+				<col width="5%" />
+				<col width="5%" />
+				<col width="5%" />
+			</colgroup>
+			<caption>게시글 상세</caption>
+			<tbody>
+				<tr>
+					<th scope="row">글 번호</th>
+					<td>${map.B_NUM }<input type="hidden" id="B_NUM" name="B_NUM"
+						value="${map.B_NUM }">
+	
+					</td>
+					<th scope="row">조회수</th>
+					<td>${map.CNT }</td>
+				</tr>
+				<tr>
+					<th scope="row">사용자IP</th>
+					<td>${map.IP_ADDRESS }</td>
+					<th scope="row">입력일</th>
+					<td>${map.INPUTDATE }</td>
+				</tr>
+				<tr>
+					<th scope="row">비밀번호</th>
+					<td>${map.PASSWD }</td>
+					<th scope="row">부모게시글번호</th>
+					<td>${map.P_NUM }</td>
+				</tr>
+				<tr>
+					<th scope="row">제목</th>
+					<td colspan="3"><input type="text" id="TITLE" name="TITLE"
+						class="wdp_90" value="${map.TITLE }" /></td>
+				</tr>
+				<tr>
+					<td colspan="4" class="view_text"><textarea rows="20"
+							cols="100" title="내용" id="CONTENTS" name="CONTENTS">${map.CONTENTS }</textarea>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="#this" class="button" id="list">목록으로</a>
+		<a href="#this" class="button" id="update">저장하기</a>
+		<a href="#this" class="button" id="delete">삭제하기</a>
+	
+		<form id="commonForm" name="commonForm"></form>
+	    
+    </div>
+    <div class="aside">aside</div> <!-- 사이드영역 추가 -->
+    <div class="footer">footer</div>
+</div>
 
-	<form id="commonForm" name="commonForm"></form>
+
 
 	<script type="text/javascript">
 		$(document).ready(function() {
