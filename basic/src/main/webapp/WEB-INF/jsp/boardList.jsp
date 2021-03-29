@@ -33,8 +33,8 @@
 	    <table class="board_list">
 			<colgroup>
 				<col width="10%" />
-				<col width="*%" />
-				<col width="10" />
+				<col width="**" />
+				<col width="10%" />
 				<col width="20%" />
 				<col width="10%" />
 			</colgroup>
@@ -48,63 +48,41 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:choose>
-					<c:when test="${fn:length(list) > 0}">
-						<c:forEach items="${list }" var="row">
-							<tr>
-								<td>${row.B_NUM }</td>
 
-								<td class="title">
-									<a href="#this" name="title">${row.TITLE }</a>
-									<input type="hidden" id="IDX" value="${row.B_NUM }">
-								</td>
-								<td>${row.IP_ADDRESS }</td>
-								<td>${row.INPUTDATE }</td>
-								<td>${row.CNT }</td>
-							</tr>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<td colspan="5">조회된 결과가 없습니다.</td>
-						</tr>
-					</c:otherwise>
-				</c:choose>
 			</tbody>
 		</table>
 		<br/>
 		<div class="pagination">
 		  <a href="#">&laquo;</a>
 		  <a href="#">1</a>
-		  <a href="#">2</a>
-		  <a href="#">3</a>
-		  <a href="#">4</a>
-		  <a href="#">5</a>
-		  <a href="#">6</a>
 		  <a href="#">&raquo;</a>
 		</div>
-		<a href="#this" class="button" id="write">글쓰기</a>
+
 		<form id="commonForm" name="commonForm"></form>
+		
+		<input type='hidden' id="PAGE_INDEX" name="PAGE_INDEX"/>
+		<div id="PAGE_NAVI"></div>
+
+		<a href="#this" class="button" id="write">글쓰기</a>
 		
     
     </div>
-    <div class="aside">aside</div> <!-- 사이드영역 추가 -->
+    <div class="aside">aside</div> 
     <div class="footer">footer</div>
 </div>
 
-	<h2>게시판 목록</h2>
-	
 	<script type="text/javascript">
 		$(document).ready(function() {
+			fn_selectBoardList(1);
+			
 			$("#write").on("click", function(e) {
 				e.preventDefault();
 				fn_openBoardWrite();
 			});
-			$("a[name='title']").on("click", function(e) {
-				e.preventDefault();
-				fn_openBoardDetail($(this));
-			});
+
 		});
+		
+		
 		function fn_openBoardWrite() {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/boardWrite' />");
@@ -112,9 +90,54 @@
 		}
 		function fn_openBoardDetail(obj) {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='boardDetail' />");
-			comSubmit.addParam("B_NUM", obj.parent().find("#IDX").val());
+			comSubmit.setUrl("<c:url value='/boardDetail' />");
+			comSubmit.addParam("B_NUM", obj.parent().find("#B_NUM").val());
 			comSubmit.submit();
+		}
+		
+		function fn_selectBoardList(pageNo) {
+		    var comAjax = new ComAjax();
+		    comAjax.setUrl("<c:url value='/selectBoardList' />");
+		    comAjax.setCallback("fn_selectBoardListCallback");
+		    comAjax.addParam("PAGE_INDEX", pageNo);
+		    comAjax.addParam("PAGE_ROW", 5);
+		    comAjax.ajax();
+		}
+		
+		function fn_selectBoardListCallback(data) {
+		    var total = data.TOTAL;
+		    var body = $("table>tbody");
+		    body.empty();
+		    if (total == 0) {
+		        var str = "<tr>" + "<td colspan='5'>조회된 결과가 없습니다.</td>" + "</tr>";
+		        body.append(str);
+		    } else {
+		        var params = {
+		            divId: "PAGE_NAVI",
+		            pageIndex: "PAGE_INDEX",
+		            totalCount: total,
+		            eventName: "fn_selectBoardList"
+		        };
+		        gfn_renderPaging(params);
+		        var str = "";
+		        $.each(data.list, function(key, value) {
+		            str +=  "<tr>" + "<td>" + value.B_NUM + 
+				            "</td>" + "<td class='title'>" +
+				            "<a href='#this' name='title'>" +
+				            value.TITLE + "</a>" +
+				            "<input type='hidden' id='B_NUM' name='B_NUM' value=" + value.B_NUM + ">" +
+				            "</td>" + "<td>" + value.IP_ADDRESS +
+				            "</td>" + "<td>" + value.INPUTDATE +
+				            "</td>" + "<td>" + value.CNT +
+				            "</td>" + "</tr>";
+		        });
+		        body.append(str);
+		        
+		        $("a[name='title']").on("click", function(e) {
+		            e.preventDefault();
+		            fn_openBoardDetail($(this));
+		        });
+		    }
 		}
 	</script>
 </body>
