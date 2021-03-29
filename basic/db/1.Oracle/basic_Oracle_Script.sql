@@ -27,7 +27,7 @@ CREATE TABLE ZZT_BOARD
 	B_NUM               NUMBER  NOT NULL ,
 	P_NUM            	NUMBER  NULL ,
 	IP_ADDRESS          VARCHAR2(100)  NULL ,
-	TITLE           	VARCHAR2(20)  NULL ,
+	TITLE           	VARCHAR2(100)  NULL ,
 	CONTENTS           	VARCHAR2(1000)  NULL ,
 	PASSWD             	VARCHAR2(50)  NULL ,
 	CNT             	NUMBER   DEFAULT 0 NOT NULL,

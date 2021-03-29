@@ -52,16 +52,12 @@
 			</tbody>
 		</table>
 		<br/>
-		<div class="pagination">
-		  <a href="#">&laquo;</a>
-		  <a href="#">1</a>
-		  <a href="#">&raquo;</a>
-		</div>
+
 
 		<form id="commonForm" name="commonForm"></form>
 		
 		<input type='hidden' id="PAGE_INDEX" name="PAGE_INDEX"/>
-		<div id="PAGE_NAVI"></div>
+		<div id="PAGE_NAVI" class="pagination"></div>
 
 		<a href="#this" class="button" id="write">글쓰기</a>
 		
@@ -100,7 +96,7 @@
 		    comAjax.setUrl("<c:url value='/selectBoardList' />");
 		    comAjax.setCallback("fn_selectBoardListCallback");
 		    comAjax.addParam("PAGE_INDEX", pageNo);
-		    comAjax.addParam("PAGE_ROW", 5);
+		    comAjax.addParam("PAGE_ROW", 20);
 		    comAjax.ajax();
 		}
 		
